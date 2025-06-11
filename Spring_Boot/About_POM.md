@@ -170,5 +170,3 @@ Used in multi-module projects to include submodules.
 | `<modules>`           | Submodules in multi-module projects |
 
 ---
-
-Would you like me to generate a **visual diagram** of this structure or provide a **template `pom.xml` file** you can use in your project?
