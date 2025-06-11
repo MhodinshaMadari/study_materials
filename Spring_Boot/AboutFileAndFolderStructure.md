@@ -225,5 +225,673 @@ Here is a **visual diagram** illustrating the structure of a Maven-based Spring 
 - **`src/main/resources`**: Configuration files (`application.properties`), static assets, and templates.
 - **`src/test/java`**: Unit and integration tests.
 - **`target/`**: Output directory for compiled classes and packaged artifacts.
+---
+In a **Spring Boot application**, the `static` folder is located under:
 
-Would you like a downloadable version of this diagram or a template project structure you can use to start building your own Spring Boot application?
+```
+src/main/resources/static/
+```
+
+This folder is used to serve **static web content** such as:
+
+- HTML files
+- CSS stylesheets
+- JavaScript files
+- Images (PNG, JPG, SVG, etc.)
+- Fonts and other client-side assets
+
+---
+
+## 📦 Purpose of the `static` Folder
+
+Spring Boot automatically configures a **static resource handler** that maps requests to `/static/**` (and other similar folders) to serve files **directly to the client**—without needing a controller.
+
+For example:
+
+| File Path | URL |
+|-----------|-----|
+| `src/main/resources/static/index.html` | `http://localhost:8080/index.html` |
+| `src/main/resources/static/css/style.css` | `http://localhost:8080/css/style.css` |
+| `src/main/resources/static/js/app.js` | `http://localhost:8080/js/app.js` |
+
+---
+
+## 🧠 How It Works
+
+Spring Boot looks for static content in the following locations (in order):
+
+1. `classpath:/META-INF/resources/`
+2. `classpath:/resources/`
+3. `classpath:/static/`
+4. `classpath:/public/`
+
+So placing files in `static/` ensures they are served as-is, without any processing.
+
+---
+
+## 🧰 Use Cases
+
+- **Frontend assets** for single-page applications (SPAs) or traditional web apps.
+- **Documentation** or help pages.
+- **Custom error pages** (e.g., `404.html`).
+- **Images and logos** used in templates or APIs.
+
+---
+
+## 🛠️ Example Structure
+
+```
+src/
+└── main/
+    └── resources/
+        └── static/
+            ├── index.html
+            ├── css/
+            │   └── style.css
+            ├── js/
+            │   └── app.js
+            └── images/
+                └── logo.png
+```
+
+---
+
+## ⚠️ Notes
+
+- Files in `static/` are **not processed** by Thymeleaf or other template engines.
+- For dynamic HTML rendering, use the `templates/` folder instead.
+- You can customize the static resource path using `application.properties`:
+  ```properties
+  spring.web.resources.static-locations=classpath:/custom-static/
+  ```
+
+---
+In a **Spring Boot** application, the `templates/` directory is used to store **server-side templates** that are rendered into HTML (or other formats) and returned to the client. These templates are typically processed by a **template engine** like **Thymeleaf**, **FreeMarker**, or **Mustache**.
+
+---
+
+## 📁 Location
+
+```
+src/main/resources/templates/
+```
+
+Spring Boot automatically looks here for templates when rendering views.
+
+---
+
+## 🧩 Purpose of the `templates/` Folder
+
+- To generate **dynamic HTML pages** using data from the backend.
+- To support **MVC (Model-View-Controller)** architecture.
+- To separate **presentation logic** from business logic.
+
+---
+
+## 🛠️ Common Template Engines
+
+| Engine     | File Extension | Description |
+|------------|----------------|-------------|
+| Thymeleaf  | `.html`        | Most popular, integrates well with Spring Boot. |
+| FreeMarker | `.ftl`         | Powerful and flexible, used in many enterprise apps. |
+| Mustache   | `.mustache`    | Lightweight and logic-less templates. |
+
+---
+
+## 🧱 Example: Thymeleaf Template
+
+**File:** `src/main/resources/templates/greeting.html`
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+    <h1>Hello, <span th:text="${name}">User</span>!</h1>
+</body>
+</html>
+```
+
+**Controller:**
+
+```java
+@Controller
+public class GreetingController {
+
+    @GetMapping("/greet")
+    public String greet(Model model) {
+        model.addAttribute("name", "Alice");
+        return "greeting"; // Resolves to templates/greeting.html
+    }
+}
+```
+
+---
+
+## 🔄 How It Works
+
+1. A user accesses `/greet`.
+2. Spring Boot calls the controller method.
+3. The controller adds data to the `Model`.
+4. The view name (`greeting`) is resolved to `templates/greeting.html`.
+5. Thymeleaf renders the HTML with the model data.
+
+---
+
+## 🧠 Why Use `templates/`?
+
+- Enables **dynamic content generation**.
+- Supports **form handling**, **loops**, **conditionals**, and **internationalization**.
+- Keeps **HTML clean and maintainable**.
+- Works seamlessly with Spring MVC.
+
+---
+
+## ⚠️ Notes
+
+- Files in `templates/` are **not directly accessible** via URL (unlike `static/`).
+- Use `@Controller` (not `@RestController`) to return views.
+- You can configure the template location in `application.properties`:
+  ```properties
+  spring.thymeleaf.prefix=classpath:/custom-templates/
+  ```
+
+---
+In a **Spring Boot** application, the `templates/` directory is used to store **server-side templates** that are rendered into HTML (or other formats) and returned to the client. These templates are typically processed by a **template engine** like **Thymeleaf**, **FreeMarker**, or **Mustache**.
+
+---
+
+## 📁 Location
+
+```
+src/main/resources/templates/
+```
+
+Spring Boot automatically looks here for templates when rendering views.
+
+---
+
+## 🧩 Purpose of the `templates/` Folder
+
+- To generate **dynamic HTML pages** using data from the backend.
+- To support **MVC (Model-View-Controller)** architecture.
+- To separate **presentation logic** from business logic.
+
+---
+
+## 🛠️ Common Template Engines
+
+| Engine     | File Extension | Description |
+|------------|----------------|-------------|
+| Thymeleaf  | `.html`        | Most popular, integrates well with Spring Boot. |
+| FreeMarker | `.ftl`         | Powerful and flexible, used in many enterprise apps. |
+| Mustache   | `.mustache`    | Lightweight and logic-less templates. |
+
+---
+
+## 🧱 Example: Thymeleaf Template
+
+**File:** `src/main/resources/templates/greeting.html`
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+    <h1>Hello, <span th:text="${name}">User</span>!</h1>
+</body>
+</html>
+```
+
+**Controller:**
+
+```java
+@Controller
+public class GreetingController {
+
+    @GetMapping("/greet")
+    public String greet(Model model) {
+        model.addAttribute("name", "Alice");
+        return "greeting"; // Resolves to templates/greeting.html
+    }
+}
+```
+
+---
+
+## 🔄 How It Works
+
+1. A user accesses `/greet`.
+2. Spring Boot calls the controller method.
+3. The controller adds data to the `Model`.
+4. The view name (`greeting`) is resolved to `templates/greeting.html`.
+5. Thymeleaf renders the HTML with the model data.
+
+---
+
+## 🧠 Why Use `templates/`?
+
+- Enables **dynamic content generation**.
+- Supports **form handling**, **loops**, **conditionals**, and **internationalization**.
+- Keeps **HTML clean and maintainable**.
+- Works seamlessly with Spring MVC.
+
+---
+
+## ⚠️ Notes
+
+- Files in `templates/` are **not directly accessible** via URL (unlike `static/`).
+- Use `@Controller` (not `@RestController`) to return views.
+- You can configure the template location in `application.properties`:
+  ```properties
+  spring.thymeleaf.prefix=classpath:/custom-templates/
+  ```
+
+---
+In a **Spring Boot** application, the `messages.properties` file is used for **internationalization (i18n)** and **localization**, allowing your application to support **multiple languages** and **custom messages** that can be dynamically rendered in views or returned from controllers.
+
+---
+
+## 📁 Location
+
+```
+src/main/resources/messages.properties
+```
+
+You can also create locale-specific versions:
+
+```
+messages_en.properties
+messages_fr.properties
+messages_hi.properties
+```
+
+---
+
+## 🧩 Purpose of `messages.properties`
+
+- Define **user-facing messages** in a centralized way.
+- Support **multiple languages** using locale-specific files.
+- Enable **dynamic message rendering** in templates and controllers.
+- Simplify **error handling**, **form validation**, and **UI text management**.
+
+---
+
+## 🛠️ Example: `messages.properties`
+
+```properties
+welcome.message=Welcome to MyApp!
+error.notfound=The requested resource was not found.
+user.greeting=Hello, {0}!
+```
+
+### Locale-specific example: `messages_fr.properties`
+
+```properties
+welcome.message=Bienvenue sur MyApp!
+error.notfound=La ressource demandée est introuvable.
+user.greeting=Bonjour, {0}!
+```
+
+---
+
+## 🧠 How It Works in Spring Boot
+
+Spring Boot automatically loads `messages.properties` using `ResourceBundleMessageSource`.
+
+### Configuration (optional):
+
+```properties
+spring.messages.basename=messages
+spring.messages.encoding=UTF-8
+```
+
+---
+
+## 🔄 Usage in Thymeleaf Templates
+
+```html
+<p th:text="#{welcome.message}"></p>
+<p th:text="#{user.greeting(${user.name})}"></p>
+```
+
+---
+
+## 🔄 Usage in Java Code
+
+```java
+@Autowired
+private MessageSource messageSource;
+
+public String getGreeting(String name, Locale locale) {
+    return messageSource.getMessage("user.greeting", new Object[]{name}, locale);
+}
+```
+
+---
+
+## 🌍 Locale Resolution
+
+Spring Boot uses `Accept-Language` header or a `LocaleResolver` to determine which `messages_*.properties` file to use.
+
+You can customize it:
+
+```java
+@Bean
+public LocaleResolver localeResolver() {
+    SessionLocaleResolver slr = new SessionLocaleResolver();
+    slr.setDefaultLocale(Locale.ENGLISH);
+    return slr;
+}
+```
+
+---
+
+## ✅ Benefits
+
+- Centralized message management.
+- Easy support for multiple languages.
+- Cleaner templates and controllers.
+- Better user experience for global audiences.
+
+---
+Here is a **visual diagram** showing how Spring Boot resolves messages from `messages.properties` files for internationalization (i18n):
+
+![Spring Boot i18n Message Resolution Flow](data:image/png;base64,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)
+
+### 🧭 Flow Breakdown:
+
+1. **User Request**  
+   A user sends a request, possibly with a locale (e.g., `Accept-Language: fr`).
+
+2. **Locale Resolver**  
+   Spring Boot uses a `LocaleResolver` (e.g., `SessionLocaleResolver`) to determine the user's locale.
+
+3. **Resolved Locale**  
+   The locale is resolved (e.g., `fr`, `en`, `hi`).
+
+4. **MessageSource**  
+   Spring Boot uses `MessageSource` to look up the appropriate message file.
+
+5. **messages_{locale}.properties**  
+   The correct properties file is loaded (e.g., `messages_fr.properties`).
+
+6. **Controller or Template**  
+   The message is injected into the controller response or rendered in a template.
+
+7. **Rendered Response**  
+   The final HTML or JSON response includes the localized message.
+---
+Here is a **downloadable Spring Boot project** that demonstrates multilingual support using `messages.properties` files for English and French:
+
+📦 [Download Spring Boot i18n Demo Project](blob:https://m365.cloud.microsoft/7ef18d9d-21a8-4a75-a8f7-687dac1d8153)
+
+### ✅ Features Included:
+
+- `messages.properties` and `messages_fr.properties` for English and French.
+- A simple `HomeController` that renders a Thymeleaf template.
+- Thymeleaf template (`home.html`) that displays localized messages.
+- Configured `application.properties` for message resolution.
+- Maven `pom.xml` with necessary dependencies.
+
+You can run the project and test it by changing your browser's language or using the `Accept-Language` header in tools like Postman or curl.
+-
+---
+In a **Spring Boot** or any Java-based application, the `META-INF/` directory is a **special folder** used to store **metadata** about the application or its components. It resides inside the `resources/` directory and is included in the final JAR or WAR file under the same path.
+
+---
+
+## 📁 Location
+
+```
+src/main/resources/META-INF/
+```
+
+When the project is built, this becomes:
+
+```
+/META-INF/ in the JAR/WAR file
+```
+
+---
+
+## 🧩 Purpose of `META-INF/`
+
+The `META-INF/` directory is used to store:
+
+| File/Folder | Purpose |
+|-------------|---------|
+| `MANIFEST.MF` | Describes metadata about the JAR (e.g., version, main class). |
+| `spring.factories` | Used by Spring Boot for auto-configuration and extension loading. |
+| `spring.components` | Used for component indexing in Spring. |
+| `services/` | Used by Java’s Service Provider Interface (SPI) mechanism. |
+| `persistence.xml` | JPA configuration file (if not using Spring Boot auto-config). |
+| Custom metadata | Any other custom configuration files your app or libraries need. |
+
+---
+
+## 🛠️ Common Files in `META-INF/`
+
+### 1. **`MANIFEST.MF`**
+- Automatically generated by Maven or Gradle.
+- Contains metadata like:
+  ```properties
+  Manifest-Version: 1.0
+  Main-Class: com.example.MyApp
+  ```
+
+### 2. **`spring.factories`**
+- Used by Spring Boot to load auto-configurations and listeners.
+- Example:
+  ```properties
+  org.springframework.boot.autoconfigure.EnableAutoConfiguration=\\
+  com.example.autoconfig.MyAutoConfiguration
+  ```
+
+### 3. **`services/`**
+- Contains files named after interfaces, listing implementation classes.
+- Used by Java SPI (e.g., JDBC drivers, logging frameworks).
+
+---
+
+## 🧠 Why is `META-INF/` Important?
+
+- Enables **modular and pluggable architecture**.
+- Supports **auto-configuration** in Spring Boot.
+- Facilitates **service discovery** and **runtime metadata**.
+- Required for **JAR specification compliance**.
+
+---
+
+## ⚠️ Notes
+
+- You usually don’t need to manually edit `META-INF/` unless you're creating a library or custom Spring Boot starter.
+- Spring Boot handles most of this automatically through annotations and build plugins.
+
+---
+Creating custom entries in the `META-INF/` directory in a Spring Boot or Java project allows you to define metadata or configuration files that can be used for advanced features like **auto-configuration**, **service discovery**, or **custom runtime behavior**.
+
+---
+
+## 🛠️ Steps to Create Custom Entries in `META-INF/`
+
+### ✅ 1. **Create the Directory**
+
+In your project structure, add:
+
+```
+src/main/resources/META-INF/
+```
+
+This ensures the files are included in the final JAR under `/META-INF/`.
+
+---
+
+### ✅ 2. **Add Custom Files**
+
+You can add various types of files depending on your use case:
+
+#### 🔹 `spring.factories` (for Spring Boot auto-configuration)
+
+**Path:** `src/main/resources/META-INF/spring.factories`
+
+**Content Example:**
+```properties
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.autoconfig.MyCustomAutoConfiguration
+```
+
+This tells Spring Boot to load your custom configuration class automatically.
+
+---
+
+#### 🔹 `services/` (for Java SPI)
+
+**Path:** `src/main/resources/META-INF/services/java.sql.Driver`
+
+**Content Example:**
+```
+com.example.MyCustomJdbcDriver
+```
+
+This registers your custom JDBC driver using Java’s Service Provider Interface.
+
+---
+
+#### 🔹 Custom Metadata File
+
+You can create any custom file, like:
+
+**Path:** `src/main/resources/META-INF/my-config.properties`
+
+**Content Example:**
+```properties
+feature.enabled=true
+feature.name=MyCustomFeature
+```
+
+You can load this file in your application using Spring’s `ResourceLoader` or `ClassPathResource`.
+
+---
+
+### ✅ 3. **Access Custom Entries in Code**
+
+#### Example: Reading a custom properties file
+
+```java
+Properties props = new Properties();
+try (InputStream input = getClass().getResourceAsStream("/META-INF/my-config.properties")) {
+    props.load(input);
+    String featureName = props.getProperty("feature.name");
+    System.out.println("Feature Name: " + featureName);
+}
+```
+
+---
+
+### ✅ 4. **Build and Verify**
+
+After building your project (`mvn clean package`), inspect the JAR file:
+
+```bash
+jar tf target/my-app.jar | grep META-INF
+```
+
+You should see your custom entries listed.
+
+---
+In a **Spring Boot** or any **Maven-based Java project**, the `target/` directory is automatically created during the build process. It serves as the **output folder** where Maven stores all the compiled classes, packaged artifacts (like JARs or WARs), and temporary files generated during the build lifecycle.
+
+---
+
+## 📁 Location
+
+```
+my-springboot-app/
+└── target/
+```
+
+This folder is **not part of your source code** and is usually **excluded from version control** (e.g., via `.gitignore`).
+
+---
+
+## 🧩 Purpose of `target/`
+
+The `target/` directory contains everything Maven produces during a build:
+
+| File/Folder | Description |
+|-------------|-------------|
+| `classes/` | Compiled `.class` files from `src/main/java`. |
+| `test-classes/` | Compiled test classes from `src/test/java`. |
+| `generated-sources/` | Sources generated by annotation processors or plugins. |
+| `generated-test-sources/` | Test sources generated during build. |
+| `maven-status/` | Internal Maven tracking files. |
+| `maven-archiver/` | Metadata used to create the final JAR/WAR. |
+| `springboot-app-0.0.1-SNAPSHOT.jar` | The final packaged application artifact. |
+| `surefire-reports/` | Test result reports from Maven Surefire Plugin. |
+| `logs/` | Optional logs generated during build or tests. |
+
+---
+
+## 🛠️ Example: After Running `mvn clean package`
+
+```
+target/
+├── classes/
+│   └── com/example/demo/
+│       └── DemoApplication.class
+├── test-classes/
+├── springboot-app-0.0.1-SNAPSHOT.jar
+├── generated-sources/
+├── surefire-reports/
+└── maven-status/
+```
+
+---
+
+## 🔄 Maven Lifecycle and `target/`
+
+Each Maven phase contributes to the contents of `target/`:
+
+- **`compile`** → `classes/`
+- **`test`** → `test-classes/`, `surefire-reports/`
+- **`package`** → JAR/WAR file
+- **`install`** → Copies artifact to local repository
+- **`clean`** → Deletes `target/`
+
+---
+
+## 🧠 Why Is `target/` Important?
+
+- It’s the **build output** directory.
+- Contains the **deployable artifact** (JAR/WAR).
+- Stores **compiled code**, **test results**, and **generated files**.
+- Helps in **debugging** and **deployment**.
+
+---
+
+## ⚠️ Best Practices
+
+- **Do not commit** `target/` to version control.
+- Use `mvn clean` to remove it before a fresh build.
+- Inspect it to verify build success or troubleshoot issues.
+
+---
+Here is a **visual diagram** illustrating the structure and contents of the Maven `target/` directory in a Spring Boot project:
+
+![Structure of Maven target Directory](blob:https://m365.cloud.microsoft/ccd3f1c6-3bf5-49ff-9654-7f5ef89f520c)
+
+### 🧭 Diagram Highlights:
+
+- **`classes/`**: Contains compiled `.class` files from `src/main/java`.
+- **`test-classes/`**: Contains compiled test classes from `src/test/java`.
+- **`generated-sources/`**: Holds code generated by annotation processors or plugins.
+- **`surefire-reports/`**: Stores test result reports from the Maven Surefire Plugin.
+- **`maven-status/`**: Internal metadata for Maven build tracking.
+- **`maven-archiver/`**: Contains metadata like `MANIFEST.MF` used to create the final JAR.
+- **`myapp-0.0.1-SNAPSHOT.jar`**: The final packaged Spring Boot application.
+---
