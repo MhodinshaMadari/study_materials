@@ -61,7 +61,7 @@ Imagine a restaurant:
 ---
 Here’s a **diagram illustrating Inversion of Control (IoC) in Spring**:
 
-![Diagram illustrating Inversion of Control (IoC) in Spring](blob:https://m365.cloud.microsoft/580e2d5c-9a11-4818-8651-df888541d524)
+![Diagram illustrating Inversion of Control (IoC) in Spring](Spring_Boot/spring-boot-ioc.png)
 
 ### 🔍 Diagram Breakdown
 
