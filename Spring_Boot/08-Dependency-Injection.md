@@ -217,5 +217,3 @@ GreetingController controller = new GreetingController(mockService); // Easy to 
 ```
 
 ---
-
-Would you like a **visual comparison** of all three DI types or a **code template** showing how to refactor field injection to constructor injection?
