@@ -62,3 +62,4 @@ JRE = JVM + Libraries
 - **JDK** is the full development kit that includes the JRE.
 
 ---
+_**Note:** Refer Image/JDK-Block-Diagram.png for JDK, JRE_
