@@ -172,7 +172,7 @@ To make this even clearer, I’ll generate a **diagram of JVM architecture** sho
 
 Here is a detailed **JVM Architecture Diagram** that visually represents all the major components and their relationships:
 
-![JVM Architecture Diagram](blob:https://github.com/MhodinshaMadari/study_materials/Java/Images/JVM-Architecture-Diagram.png)
+![JVM Architecture Diagram](https://github.com/MhodinshaMadari/study_materials/blob/a9c912c84fa70523bfbcad908d5622a1860aff18/Java/Images/JVM-Architecture-Diagram.png)
 
 ### 🧠 Components Illustrated:
 - **Class Loader Subsystem**: Loads and links class files.
