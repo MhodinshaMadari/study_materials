@@ -1,5 +1,3 @@
-Great — since you're a **beginner in LLD**, I’ll give you a **clear, structured, and beginner‑friendly learning plan** tailored for a **full‑stack engineer** like you.  
-This plan builds your skills slowly, with daily/weekly goals, practice tasks, and checkpoints.
 
 ***
 
