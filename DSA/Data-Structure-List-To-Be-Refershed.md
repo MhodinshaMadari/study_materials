@@ -1,240 +1,92 @@
-I can’t generate an actual `.md` file for download, but here is a **complete copy-paste–ready Markdown document** you can save as `dsa_data_structures.md`.
+# 📚 DSA Data Structures to Refresh (Java)
 
-***
-
-````markdown
-# 📚 DSA Data Structures Checklist (Java) – For 6+ Years Experience
-
-## 🎯 Objective
-Refresh the most important data structures required to master DSA for coding interviews and real-world problem solving.
+## 🎯 Goal
+Prepare for Data Structures & Algorithms by refreshing the essential data structures in Java.
 
 ---
 
-# ✅ Core Data Structures (High Priority)
+# ✅ Core Data Structures (Must Refresh First)
 
-## 1. Arrays & Strings
-**Types:**
+## 1. Arrays
 - `int[]`, `char[]`
-- `String`, `StringBuilder`
+- Traversal
+- In-place operations
 
-**Focus Areas:**
-- Traversal patterns
-- Sliding window
-- Prefix sum
-- In-place updates
+## 2. Strings
+- `String`
+- `StringBuilder`
 
-**Key Methods (Java):**
-```java
-Arrays.sort(arr);
-s.charAt(i);
-s.substring(l, r);
-````
+## 3. Hashing
+### HashMap
+- `HashMap<K, V>`
 
-***
+### HashSet
+- `HashSet<T>`
 
-## 2. Hashing (Most Important)
+## 4. Two Pointers (Technique)
+- Opposite direction pointers
+- Fast & slow pointers
 
-**Structures:**
+## 5. Recursion
+- Base condition
+- Call stack
+- Recursive flow
 
-* `HashMap<K, V>`
-* `HashSet<T>`
+---
 
-**Focus Areas:**
+# ⚙️ Intermediate Data Structures
 
-* Frequency counting
-* Fast lookups (O(1))
-* Prefix sum problems
+## 6. Stack
+- `Stack`
+- `Deque` (preferred)
 
-**Example:**
+## 7. Queue
+- `Queue`
+- `LinkedList`
 
-```java
-Map<Integer, Integer> map = new HashMap<>();
-map.put(1, 1);
-map.get(1);
-map.containsKey(1);
-```
+## 8. Deque
+- `ArrayDeque`
 
-***
+## 9. Linked List
+- Singly linked list
+- Doubly linked list
 
-## 3. Two Pointers (Technique)
+---
 
-**Patterns:**
+# 🧠 Advanced Data Structures
 
-* Opposite direction
-* Fast & slow pointers
-* Sliding window
+## 10. Trees
+- Binary Tree
+- Binary Search Tree (BST)
 
-**Template:**
+## 11. Heap
+- `PriorityQueue`
 
-```java
-int left = 0, right = n - 1;
+## 12. Graphs
+- Adjacency List representation
 
-while (left < right) {
-    // logic
-}
-```
+---
 
-***
+# 🚀 Recommended Focus Order
 
-## 4. Recursion
+1. Arrays  
+2. Strings  
+3. HashMap / HashSet  
+4. Two pointers  
+5. Recursion  
+6. Stack  
+7. Queue / Deque  
+8. Linked List  
+9. Trees  
+10. Heap  
+11. Graphs  
 
-**Focus Areas:**
+---
 
-* Base case
-* Recursive call
-* Call stack
-* Backtracking basics
+# ✅ Summary
 
-**Template:**
+- Start with **core structures**
+- Move to **problem-solving patterns**
+- Then advance to **complex structures**
 
-```java
-void solve(int i) {
-    if (i == n) return;
-    solve(i + 1);
-}
-```
-
-***
-
-# ⚙️ Important Data Structures (Next Phase)
-
-## 5. Stack
-
-**Structures:**
-
-* `Stack`
-* `Deque` (preferred)
-
-**Use Cases:**
-
-* Monotonic stack
-* Parentheses problems
-* Next greater element
-
-**Example:**
-
-```java
-Deque<Integer> stack = new ArrayDeque<>();
-stack.push(1);
-stack.pop();
-stack.peek();
-```
-
-***
-
-## 6. Queue / Deque
-
-**Structures:**
-
-* `Queue`
-* `Deque`
-
-**Use Cases:**
-
-* BFS
-* Sliding window maximum
-
-***
-
-## 7. Linked List
-
-**Topics:**
-
-* Singly linked list
-* Doubly linked list
-
-**Must Know:**
-
-* Reverse list
-* Cycle detection (Floyd’s)
-
-***
-
-# 🧠 Advanced Data Structures (Later Phase)
-
-## 8. Trees
-
-**Types:**
-
-* Binary Tree
-* Binary Search Tree (BST)
-
-**Focus:**
-
-* DFS (Inorder, Preorder, Postorder)
-* BFS (Level Order)
-
-***
-
-## 9. Heap (Priority Queue)
-
-**Structure:**
-
-```java
-PriorityQueue<Integer> pq = new PriorityQueue<>();
-```
-
-**Use Cases:**
-
-* Top K elements
-* Min / Max extraction
-
-***
-
-## 10. Graphs
-
-**Representation:**
-
-```java
-List<List<Integer>> graph = new ArrayList<>();
-```
-
-**Focus:**
-
-* BFS / DFS
-* Shortest path (later phase)
-
-***
-
-# 🚀 What to Focus on RIGHT NOW
-
-✅ Arrays  
-✅ Strings  
-✅ HashMap / HashSet  
-✅ Recursion Basics
-
-***
-
-# 🧭 Key Strategy (Senior-Level Thinking)
-
-Instead of memorizing:
-
-> “Which DS is this?”
-
-Think:
-
-> “Why is this the optimal DS here?”
-
-***
-
-# ✅ Daily Checklist
-
-For each problem, ask:
-
-* Can I optimize using HashMap?
-* Can I reduce complexity?
-* Is this sliding window or prefix sum?
-
-***
-
-# 🧩 Practice Starter Problems
-
-1. Two Sum
-2. Longest Substring Without Repeating Characters
-3. Subarray Sum Equals K
-
-***
-
-
-Tell me the number 👍
-```
+---
